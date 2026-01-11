@@ -5,6 +5,7 @@ Changes will be documented [here](CHANGELOG.md) (hopefully) to help with develop
 
 ## For this Year's Programmers
 Welcome to the 2026 repo! Git and GitHub is probably new to you so I've included some information below.
+TLDR is that git/github is an amazing tool that real-world programmers use for colloboration and organizing code with related resources, so I wanted to see if it would work out for us.
 
 ### Git and GitHub
 - TODO
@@ -12,3 +13,4 @@ Welcome to the 2026 repo! Git and GitHub is probably new to you so I've included
 
 ### Contributing
 Please see [contributing](CONTRIBUTING.md) and [naming conventions](.docs/naming-conventions.md).
+
