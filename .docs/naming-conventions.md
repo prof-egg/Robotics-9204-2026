@@ -1,4 +1,4 @@
 # Naming Conventions
 
 > [!IMPORTANT]
-> _This just contains placeholder text for now, a proper contributing file is on the todo list._
+> _This is just a placeholder and is on the todo._
