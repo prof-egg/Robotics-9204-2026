@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 > [!NOTE]
-> _Mark down files will not documented here. This includes things like README.md or any of the files in [.docs](.docs/)._
+> _I don't plan to track markdown files as heavily as everything else, this includes things like README.md or any of the files in [.docs](.docs/). Why? Because I don't wanna_ ¯\\\_(ツ)\_/¯
 
 ## [Unreleased] 
 - Nothing yet!
