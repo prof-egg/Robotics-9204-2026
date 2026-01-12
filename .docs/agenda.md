@@ -14,8 +14,13 @@ This week we are just going to try and figure out how exactly things will work f
 
 ### General
 - New smaller GroupMe for team programmers?
-- Figure out who is on the programming team (new members maybe and nolan may not want to be a programmer this season)
-- Figure out programming situation (what device will the programmers use?)
+- Figure out who is on the programming roster this season
+  - Originally, it seemed that nolan was interested in being on the programming team but he may have backed out, and we might get some more members
+- Figure out programming situation
+  - There is only one device that the team has that we can currently program on, that is obviously not enough
+  - Our choices seem to be to either get the bigwigs at PCHS HQ to let us use the CAD Lab computers, or use some of the spare robotics laptops
+- Figure out what we are even going to program
+  - The engineers seemed on the edge on whether we were doing tank drive again, taking a shot at swerve drive, or doing both
 - Go over [command-based programming](https://docs.wpilib.org/en/stable/docs/software/commandbased/what-is-command-based.html) for FRC robotics
 
 ### Git/GitHub
