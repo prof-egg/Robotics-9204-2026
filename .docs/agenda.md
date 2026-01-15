@@ -4,12 +4,20 @@ The agenda will hold general information about what we are maybe supposed to be 
 ## Week 6 - 2026-02-16
 Test the robot?
 
-## Week 2 - 2026-01-19
-No idea 
-
 ---
 
-## Week 1 - 2026-01-12 (CURRENT)
+## [Week 2 - 2026-01-19](https://github.com/prof-egg/Robotics-9204-2026)
+Last week was crazy because we didn't actually do anything, the goal this week: do something
+### General
+- Speedrun week 1 stuff
+- Try to program basic tank drive on the old robot chassis
+  - What does command-based programming look like?
+  - What does interacting with the robot through WPILib actually look like? (interact with motors, get controller input, etc.)
+  - How do we deploy our code to the robot? (I actually don't know so we gotta figure this one out)
+  - How can we test code without needing to deploy? (something to think about but I think we will have to answer this some other time)
+---
+
+## Week 1 - 2026-01-12
 This week we are just going to try and figure out how exactly things will work for this season. By the end of the week hopefully we will feel comfortable actually getting started on programming.
 
 ### General
@@ -29,5 +37,3 @@ This week we are just going to try and figure out how exactly things will work f
 - Create GitHub accounts and add team to this private repo
 - Team members successfully cloned the repo
 - "Who was here?" github excersize
-
----
