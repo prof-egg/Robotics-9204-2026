@@ -1,6 +1,6 @@
 # Who was here?
 - Mik was here!
--Zink314 wuz here
+- Zink314 wuz here
  ||
  ||   ______
 |  \ /  __  \
