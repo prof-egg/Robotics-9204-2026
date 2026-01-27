@@ -10,11 +10,12 @@ Last week we went over basic git and github practices (or at least half of us di
 ### General
 - Research basic tank drive
 - Program basic tank drive
-  - We are each going to each make our own branch and title it according to [naming convetions](naming-conventions.md). For example: `feature/mik-tank-drive`.
-  - We are all going to try to get comfortable with the [command-based](https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html) programming framework and by programming your own tank-drive software in your own branch.
-  - Hopefully we will have time to see how we can deploy our code to the ROBORio and debug if we need to.
+  - We are each going to each make our own branch and title it according to [naming convetions]. For example: `feature/mik-tank-drive`.
+  - In our own branches, we will get comfortable with using the [command-based] framework by programming our own [tank drive] software.
+  - This will include things like making a tank drive [subsystem] (name the file something like `TankDrivetrainSybsystem.java`), making a drive [command], adding any necessary [constants] to the [`Constants.java`] file to keep your code clean, and making sure everything gets hooked up properly in the [robot container] ([`RobotContainer.java`]).
+  - Hopefully we will have time to [deploy] our code to the roboRIO and debug if we need to (we are probably going to have to enlist Tom to help us).
 - Our focus this year is swerve drive, but programming tank drive first will be good practice and gives us an easy drivetrain to test other robot modules on.
-  
+> The name of the drivetrain subsystem file would usually just be named `DrivetrainSubsystem.java`. But, we are going to try and make a swerve-drive subsystem as well, so we should make the name of the tank drive file distinct. Hence: `TankDrivetrainSybsystem.java`.
 ---
 
 
@@ -40,7 +41,7 @@ This week we are just going to try and figure out how exactly things will work f
   - Our choices seem to be to either get the bigwigs at PCHS HQ to let us use the CAD Lab computers, or use some of the spare robotics laptops
 - Figure out what we are even going to program
   - The engineers seemed on the edge on whether we were doing tank drive again, taking a shot at swerve drive, or doing both
-- Go over [command-based programming](https://docs.wpilib.org/en/stable/docs/software/commandbased/what-is-command-based.html) for FRC robotics
+- Go over [command-based] programming for FRC robotics
 
 ### Git/GitHub
 - Go over the basics of Git and GitHub
@@ -48,3 +49,15 @@ This week we are just going to try and figure out how exactly things will work f
 - Create GitHub accounts and add team to this private repo
 - Team members successfully cloned the repo
 - "Who was here?" github excersize
+
+[deploy]: https://docs.wpilib.org/en/stable/docs/software/vscode-overview/deploying-robot-code.html#building-and-deploying-robot-code
+[robot container]: https://docs.wpilib.org/en/stable/docs/software/commandbased/structuring-command-based-project.html#robotcontainer
+[constants]: https://docs.wpilib.org/en/stable/docs/software/commandbased/structuring-command-based-project.html#constants
+[tank drive]: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
+[naming convetions]: naming-conventions.md
+[`Constants.java`]: ../src/main/java/frc/robot/Constants.java
+[`RobotContainer.java`]: ../src/main/java/frc/robot/RobotContainer.java
+[subsystem]: https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html
+[command-based]: https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html
+[command]: https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html
+[tank drive]: https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html
