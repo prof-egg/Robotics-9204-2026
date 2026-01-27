@@ -5,8 +5,20 @@ The agenda will hold general information about what we are maybe supposed to be 
 Test the robot?
 
 ---
+## [Week 3 - 2026-01-26](https://github.com/prof-egg/Robotics-9204-2026)
+Last week we went over basic git and github practices (or at least half of us did), this week we are getting into programming fr fr.
+### General
+- Research basic tank drive
+- Program basic tank drive
+  - We are each going to each make our own branch and title it according to [naming convetions](naming-conventions.md). For example: `feature/mik-tank-drive`.
+  - We are all going to try to get comfortable with the [command-based](https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html) programming framework and by programming your own tank-drive software in your own branch.
+  - Hopefully we will have time to see how we can deploy our code to the ROBORio and debug if we need to.
+- Our focus this year is swerve drive, but programming tank drive first will be good practice and gives us an easy drivetrain to test other robot modules on.
+  
+---
 
-## [Week 2 - 2026-01-19](https://github.com/prof-egg/Robotics-9204-2026)
+
+## Week 2 - 2026-01-19
 Last week was crazy because we didn't actually do anything, the goal this week: do something
 ### General
 - Speedrun week 1 stuff
@@ -15,7 +27,6 @@ Last week was crazy because we didn't actually do anything, the goal this week: 
   - What does interacting with the robot through WPILib actually look like? (interact with motors, get controller input, etc.)
   - How do we deploy our code to the robot? (I actually don't know so we gotta figure this one out)
   - How can we test code without needing to deploy? (something to think about but I think we will have to answer this some other time)
----
 
 ## Week 1 - 2026-01-12
 This week we are just going to try and figure out how exactly things will work for this season. By the end of the week hopefully we will feel comfortable actually getting started on programming.
