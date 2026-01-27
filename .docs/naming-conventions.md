@@ -16,7 +16,7 @@
 | `experiment/` | Experimental or spike work                | `experiment/ai-code-assist`       |
 | `release/`    | Prepare for a release (CI/CD pipelines)   | `release/v2.5.0`                  |
 
-- **Commits** - I didn't finish this part but you can about conventions [here](https://www.conventionalcommits.org/en/v1.0.0/) since I was just going to steal this anyway.
+- **Commits** - I didn't finish this part but you can read about conventions [here](https://www.conventionalcommits.org/en/v1.0.0/) since I was just going to steal this anyway.
 
 ## Java
 - **Packages** - The prefix of a unique package name is always written in all-lowercase ASCII letters and should be one of the top-level domain names, currently com, edu, gov, mil, net, org, or one of the English two-letter codes identifying countries as specified in ISO Standard 3166, 1981. <br><br>Subsequent components of the package name vary according to an organization's own internal naming conventions. Such conventions might specify that certain directory name components be division, department, project, machine, or login names.
