@@ -14,16 +14,9 @@ public class TankDrivetrainSubsystem extends SubsystemBase {
 	private final PWMSparkMax motorRightFront = new PWMSparkMax(TankDriveConstants.MOTOR_RIGHT_FRONT_ID);
 	private final PWMSparkMax motorRightBack = new PWMSparkMax(TankDriveConstants.MOTOR_RIGHT_BACK_ID);
 
-	// Get one encoder per motor pair
-	// NOTE: I literally don't know what this for yet, but Ozias said that we had encoders and
-	// last years code had stuff for encoders, so I have to figure out what this is for
-  //private final Encoder leftEncoder = new Encoder(TankDriveConstants.DRIVE_LEFT_ENCODER_CHANNEL_A, TankDriveConstants.DRIVE_LEFT_ENCODER_CHANNEL_B);
-  //private final Encoder rightEncoder = new Encoder(TankDriveConstants.DRIVE_RIGHT_ENCODER_CHANNEL_A, TankDriveConstants.DRIVE_RIGHT_ENCODER_CHANNEL_B);
-	
 	// Handles easing for streams of inputs
 	private final SlewRateLimiter leftSlewFilter = new SlewRateLimiter(TankDriveConstants.SLEW_RATE);
 	private final SlewRateLimiter rightSlewFilter = new SlewRateLimiter(TankDriveConstants.SLEW_RATE);
-
 
 	private final DifferentialDrive tankDrive;
 
