@@ -24,21 +24,15 @@ public final class Constants {
   }
 
   public static class TankDriveConstants {
-    // Motor IDs (no idea what these are supposed to be, will have to ask engineers)
-    public static final int MOTOR_LEFT_FRONT_ID = 0;
-    public static final int MOTOR_LEFT_BACK_ID = 0;
-    public static final int MOTOR_RIGHT_FRONT_ID = 0;
-    public static final int MOTOR_RIGHT_BACK_ID = 0;
+    // Motor IDs
+    public static final int MOTOR_LEFT_FRONT_ID = 3;
+    public static final int MOTOR_LEFT_BACK_ID = 4;
+    public static final int MOTOR_RIGHT_FRONT_ID = 1;
+    public static final int MOTOR_RIGHT_BACK_ID = 2;
 
     // Inversion settings (no idea what these are supposed to be, will have to ask engineers)
     public static final boolean ARE_MOTORS_LEFT_INVERTED = false;
     public static final boolean ARE_MOTORS_RIGHT_INVERTED = true;
-
-    // Encoders (no idea what these are supposed to be, will have to ask engineers)
-    public static final int DRIVE_LEFT_ENCODER_CHANNEL_A = 0; // Digital DIO port
-    public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 0; // Digital DIO port
-    public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 0; // Digital DIO port
-    public static final int DRIVE_RIGHT_ENCODER_CHANNEL_B = 0; // Digital DIO port
 
     // The setting for if we should be squaring inputs. Read more: 
     // https://docs.wpilib.org/en/stable/docs/software/hardware-apis/motors/wpi-drive-classes.html#squaring-inputs
