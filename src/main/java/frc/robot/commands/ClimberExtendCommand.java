@@ -15,7 +15,7 @@ public class ClimberExtendCommand extends Command {
 
     @Override
     public void initialize() {
-        this.targetPosition=Constants.Climber.CLIMBER_TARGET_EXTENDED;
+        this.targetPosition=Constants.ClimberConstants.CLIMBER_TARGET_EXTENDED;
         climber.setTarget(targetPosition);
     }
 

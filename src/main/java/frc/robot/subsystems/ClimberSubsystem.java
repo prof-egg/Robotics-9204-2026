@@ -21,10 +21,10 @@ public class ClimberSubsystem extends SubsystemBase {
     private double target=0.0;
 
     public ClimberSubsystem() {
-        climberMotor = new SparkMax(Constants.Climber.CLIMBER_CHANNEL, MotorType.kBrushless);
+        climberMotor = new SparkMax(Constants.ClimberConstants.CLIMBER_CHANNEL, MotorType.kBrushless);
         climberController = climberMotor.getClosedLoopController();
         climberEncoder = climberMotor.getEncoder();
-        climberEncoder.setPosition(Constants.Climber.CLIMBER_TARGET_RETRACTED);
+        climberEncoder.setPosition(Constants.ClimberConstants.CLIMBER_TARGET_RETRACTED);
 
         climberConfig = new SparkMaxConfig();
 
@@ -34,7 +34,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
         climberConfig.closedLoop
             .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
-            .p(Constants.Climber.CLIMBER_PID_P)
+            .p(Constants.ClimberConstants.CLIMBER_PID_P)
             .i(0)
             .d(0)
             .outputRange(-1, 1); //TODO: May want to change range so that retracting doesn't go too fast
@@ -59,7 +59,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
     //Test if within error
     public boolean nearTarget() {
-        return Math.abs(getPosition() - this.target) < Constants.Climber.CLIMBER_ERROR;
+        return Math.abs(getPosition() - this.target) < Constants.ClimberConstants.CLIMBER_ERROR;
     }
 
     @Override

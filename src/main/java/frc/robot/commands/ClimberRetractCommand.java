@@ -15,7 +15,7 @@ public class ClimberRetractCommand extends Command {
 
     @Override
     public void initialize() {
-        this.targetPosition=Constants.Climber.CLIMBER_TARGET_RETRACTED;
+        this.targetPosition=Constants.ClimberConstants.CLIMBER_TARGET_RETRACTED;
         climber.setTarget(targetPosition);
     }
 

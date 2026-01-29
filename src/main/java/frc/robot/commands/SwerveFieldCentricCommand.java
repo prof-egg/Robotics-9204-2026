@@ -36,7 +36,7 @@ public class SwerveFieldCentricCommand extends Command {
 
         //Limit velocity to prevent tippy
         Translation2d translation = SwerveController.getTranslation2d(desiredSpeeds);
-        translation = SwerveMath.limitVelocity(translation, swerve.getFieldVelocity(), swerve.getPose(), Constants.Drivetrain.SWERVE_LOOP_TIME, Constants.Drivetrain.SWERVE_ROBOT_MASS, List.of(Constants.Drivetrain.SWERVE_CHASSIS), swerve.getSwerveDriveConfiguration());
+        translation = SwerveMath.limitVelocity(translation, swerve.getFieldVelocity(), swerve.getPose(), Constants.SwerveDrivetrainConstants.SWERVE_LOOP_TIME, Constants.SwerveDrivetrainConstants.SWERVE_ROBOT_MASS, List.of(Constants.SwerveDrivetrainConstants.SWERVE_CHASSIS), swerve.getSwerveDriveConfiguration());
 
         //Make the robot move
         swerve.drive(translation, desiredSpeeds.omegaRadiansPerSecond, true, isOpenLoop);

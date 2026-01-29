@@ -6,13 +6,13 @@ import swervelib.math.Matter;
 
 public final class Constants {
     /* General */
-    public static class General {
+    public static class GeneralConstants {
         //Debug mode
         public static final boolean DEBUG_MODE=true;
     }
 
     /* Controls */
-    public static class Controls {
+    public static class ControlsConstants {
         //XBox controllers
         public static final int CONTROLLER_DRIVER_PORT = 0;
         public static final int CONTROLLER_OPERATOR_PORT = 0;
@@ -22,7 +22,7 @@ public final class Constants {
     }
 
     /* Drivetrain */
-    public static class Drivetrain {
+    public static class SwerveDrivetrainConstants {
         //Swerve-specific settings
         public static final double SWERVE_MAX_SPEED  = 5.33; //Maximum speed in m/s
         public static final double SWERVE_ROBOT_MASS = (100) * 0.453592; //Weight in kg
@@ -31,7 +31,7 @@ public final class Constants {
     }
      
     /* Climber */
-    public static class Climber {
+    public static class ClimberConstants {
         //Climber motor
         public static final int CLIMBER_CHANNEL=0;
 
@@ -48,22 +48,22 @@ public final class Constants {
     }    
 
     /* Extention */
-    public static class Extention {
+    public static class ExtentionConstants {
         //TODO: Extension constants here
     }
 
         /* Indexer */
-    public static class Indexer {
+    public static class IndexerConstants {
         //TODO: Indexer constants here
     }
 
     /* Intake */
-    public static class Intake {
+    public static class IntakeConstants {
         //TODO: Intake constants here
     }
 
     /* Shooter */
-    public static class Shooter {
+    public static class ShooterConstants {
         //TODO: Shooter constants here
     }
 

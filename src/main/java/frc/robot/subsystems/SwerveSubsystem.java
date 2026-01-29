@@ -25,7 +25,7 @@ public class SwerveSubsystem extends SubsystemBase {
  
         try
         {
-            this.swerveDrive = new SwerveParser(directory).createSwerveDrive(Constants.Drivetrain.SWERVE_MAX_SPEED);
+            this.swerveDrive = new SwerveParser(directory).createSwerveDrive(Constants.SwerveDrivetrainConstants.SWERVE_MAX_SPEED);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -82,7 +82,7 @@ public class SwerveSubsystem extends SubsystemBase {
     public ChassisSpeeds getTargetSpeeds(double xInput, double yInput, Rotation2d angle) {
         xInput = Math.pow(xInput, 3);
         yInput = Math.pow(yInput, 3);
-        return swerveDrive.swerveController.getTargetSpeeds(xInput, yInput, angle.getRadians(), getHeading().getRadians(),Constants.Drivetrain.SWERVE_MAX_SPEED);
+        return swerveDrive.swerveController.getTargetSpeeds(xInput, yInput, angle.getRadians(), getHeading().getRadians(),Constants.SwerveDrivetrainConstants.SWERVE_MAX_SPEED);
     }
 
     public ChassisSpeeds getFieldVelocity() {

@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Constants.Controls;
+import frc.robot.Constants.ControlsConstants;
 import frc.robot.commands.SwerveFieldCentricCommand;
 import frc.robot.subsystems.SwerveSubsystem;
 
@@ -25,15 +25,15 @@ public class RobotContainer {
   //TODO: Initialize sensors
 
   //Get controllers
-  private final CommandXboxController controllerDriver = new CommandXboxController(Controls.CONTROLLER_DRIVER_PORT);
-  private final CommandXboxController controllerOperator = new CommandXboxController(Controls.CONTROLLER_OPERATOR_PORT);
+  private final CommandXboxController controllerDriver = new CommandXboxController(ControlsConstants.CONTROLLER_DRIVER_PORT);
+  private final CommandXboxController controllerOperator = new CommandXboxController(ControlsConstants.CONTROLLER_OPERATOR_PORT);
 
   public RobotContainer() {
     configureBindings(); //May want to split this into two different methods - one controller + two controllers
 
     SwerveFieldCentricCommand fieldCentricDrive = new SwerveFieldCentricCommand(swerve,
-      () -> MathUtil.applyDeadband(controllerDriver.getLeftY(), Constants.Controls.CONTROLLER_DEADBAND),
-      () -> MathUtil.applyDeadband(controllerDriver.getLeftX(), Constants.Controls.CONTROLLER_DEADBAND),
+      () -> MathUtil.applyDeadband(controllerDriver.getLeftY(), Constants.ControlsConstants.CONTROLLER_DEADBAND),
+      () -> MathUtil.applyDeadband(controllerDriver.getLeftX(), Constants.ControlsConstants.CONTROLLER_DEADBAND),
       () -> controllerDriver.getRawAxis(2), 
       false);
 
