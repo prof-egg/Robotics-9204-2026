@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.Constants.ControllerConstants;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -15,7 +16,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
 
-  // Initialize subsystems
+  // Controllers
+  private final CommandXboxController driverController = new CommandXboxController(ControllerConstants.CONTROLLER_DRIVER_PORT);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

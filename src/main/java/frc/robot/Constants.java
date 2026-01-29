@@ -13,7 +13,14 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
+  
+  public static class ControllerConstants {
+    // XBox controllers ports (as indicated on the Driver Station). Read more:
+    // https://docs.wpilib.org/en/stable/docs/software/basic-programming/joystick.html
+    public static final int CONTROLLER_DRIVER_PORT = 0;
+    public static final int CONTROLLER_OPERATOR_PORT = 0;
+
+    // Deadband
+    public static final double CONTROLLER_DEADBAND=0.05;
   }
 }
