@@ -3,7 +3,7 @@ This chart is based off of [this chart](https://docs.yagsl.com/configuring-yagsl
 
 | Feature | Value | Relevance |
 | - | - | - |
-| Drive [Gear Ratio] | N/A | The _Drive Gear Ratio_ is the ratio describing how many times the drive motor shaft must rotate for the wheel to complete one rotation. This is usually available on the website of the Swerve Module purchased. |
+| Drive [Gear Ratio] | `5.08/1` | The _Drive Gear Ratio_ is the ratio describing how many times the drive motor shaft must rotate for the wheel to complete one rotation. This is usually available on the website of the Swerve Module purchased. |
 | Steering [Gear Ratio] | N/A | The _Steering Gear Ratio_ is the ratio describing how many times the steering motor shaf1t must rotate for the wheel to complete one spin. This is usally available on the website of the Swerve Module purchased. |
 | Absolute Encoder Ticks Per Revolution| N/A | [See here](https://docs.yagsl.com/devices/absolute-encoders) |
 | CAN Bus Name | `rio` | If you are using a [CANivore] you may place CTRE devices such as the [Falcon500], [Kraken], [Pigeon2.0], and [CANCoder] on that bus. You must [set this value to the name of your CANivore]. |
