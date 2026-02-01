@@ -9,15 +9,15 @@ This chart is based off of [this chart](https://docs.yagsl.com/configuring-yagsl
 | CAN Bus Name | `rio` | If you are using a [CANivore] you may place CTRE devices such as the [Falcon500], [Kraken], [Pigeon2.0], and [CANCoder] on that bus. You must [set this value to the name of your CANivore]. |
 | CAN or PWM or Analog Input ID of every sensor and motor controller. | [See here](#Module-CAN-IDs) | If this is incorrect it will cause major issue's because you will be controlling one motor thinking it's another! |
 | Connection method for Gyroscope (NavX only) | `navx_spi` | If you are using a NavX over usb the device type should be `navx_usb` however if you are on the MXP please use `navx_spi`. |
-| Inversion state of the motors | [See here](#Motor-Inversion-States)| The inversion state needs to make the wheels go forward and spin clockwise. |
-| Inversion state of the absolute encoder | `false` | Typically the absolute encoder will increase in value along with the steering motor movements, if this is not the case it needs to be changed!!! |
+| Inversion state of the motors | [See here](#Module-Details) | The inversion state needs to make the wheels go forward and spin clockwise. |
+| Inversion state of the absolute encoder | [See here](#Module-Details) | Typically the absolute encoder will increase in value along with the steering motor movements, if this is not the case it needs to be changed!!! |
 | Inversion state of the gyroscope | `false` | The gyroscope needs to be counter clockwise positive, if it isn't it needs to be inverted! |
-| Absolute Encoder Offsets | [See here](#Absolute-Encoder-Offsets) | The absolute encoder offset is given when you straighten out all modules **(facing the same way!)** then read the value from the vendor client or from SmartDashboard while the robot is Disabled! |
+| Absolute Encoder Offsets | [See here](#Module-Details) | The absolute encoder offset is given when you straighten out all modules **(facing the same way!)** then read the value from the vendor client or from SmartDashboard while the robot is Disabled! |
 | Motor Controller PIDF values | [See here](#PIDF-Values) | Typical values are available in YAGSL-Example for NEO's and Falcon500's, however these may need to be further tuned. Ideally you can do this with the vendor client. |
-| Distance **in inches** from the center of your robot to the center of each wheel. | N/A | This is used for [`SwerveDriveKinematics`] while setting up your robot in YAGSL. |
+| Distance **in inches** from the center of your robot to the center of each wheel. | [See here](#Module-Details) | This is used for [`SwerveDriveKinematics`] while setting up your robot in YAGSL. |
 
 
-### Module CAN IDs
+### Motor CAN IDs
 | Module | Azimuth CAN ID | Drive CAN ID |
 | - | :-: | :-: |
 | Front Left | `1` | `2` |
@@ -25,27 +25,19 @@ This chart is based off of [this chart](https://docs.yagsl.com/configuring-yagsl
 | Back Left | `5` | `6` |
 | Back Right | `7` | `8` |
 
-### Motor Inversion States
-| Module | Inverted |
-| - | :-: |
-| Front Left | `false` |
-| Front Right | `false` |
-| Back Left | `false` |
-| Back Right | `false` |
-
-### Absolute Encoder Offsets
-| Module | Encoder Offset |
-| - | :-: |
-| Front Left | `0` |
-| Front Right | `0` |
-| Back Left | `0` |
-| Back Right | `0` |
+### Module Details
+| Module | Motor Inverted | ABS Encoder Inverted | Encoder Offsets | Offset +X (front) | Offset +Y (left) |
+| - | :-: | :-: | :-: | :-: | :-: |
+| Front Left | `false` | `false` | `0` | `11.75` | `11.75` |
+| Front Right | `false` | `false` | `0` | `11.75` | `-11.75` |
+| Back Left | `false` | `false` | `0` | `-11.75` | `11.75` |
+| Back Right | `false` | `false` | `0` | `-11.75` | `-11.75` |
 
 ### PIDF Values
 | Set | P | I | D | F | iz |
 | - | :-: | :-: | :-: | :-: | :-: |
-| Drive | N/A | N/A | N/A | N/A | N/A |
-| Angle | N/A | N/A | N/A | N/A | N/A |
+| Drive | `0.0020645` | `0` | `0` | `0` | `0` |
+| Angle | `0.01` | `0` | `0` | `0` | `0` |
 
 [CANivore]: https://store.ctr-electronics.com/canivore/
 [Falcon500]: https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/
