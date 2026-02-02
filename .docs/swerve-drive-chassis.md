@@ -27,7 +27,7 @@ This chart is based off of [this chart](https://docs.yagsl.com/configuring-yagsl
 
 ### Module Details
 We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Modules in this chassis.
-| Module | Motor Inverted | ABS Encoder Inverted | Encoder Offsets | Offset +X (front) | Offset +Y (left) |
+| Module | Motor Inverted | Absolute Encoder Inverted | Absolute Encoder Offsets <br> (degrees) | Offset +X (front) | Offset +Y (left) |
 | - | :-: | :-: | :-: | :-: | :-: |
 | Front Left | `false` | `false` | `0` | `11.75` | `11.75` |
 | Front Right | `false` | `false` | `0` | `11.75` | `-11.75` |
