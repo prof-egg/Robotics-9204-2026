@@ -1,22 +1,44 @@
 # Agenda
 The agenda will hold general information about what we are maybe supposed to be doing for the week as the programming team. 
 
-## Week 6 - 2026-02-16
+### Week 6 - 2026-02-16
 Test the robot?
 
 ---
-## [Week 3 - 2026-01-26](https://github.com/prof-egg/Robotics-9204-2026)
+## [Week 4 - 2026-02-02](https://github.com/prof-egg/Robotics-9204-2026)
+I want us to be able to finish up the tank drive test program and do a test drive by the end of the week.
+I want to be able to finish up swerve drive for the actual robot, and then leave the rest of the robot to you guys.
+
+### General
+- Keep researching basic tank drive (tutorials, questions, example source code, docs, last week's links, etc.).
+- Keep programming basic tank drive.
+- Try and test tank drive by the end of the week.
+- Understand the [command-based] framework.
+  - [Subsystems](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html#creating-a-subsystem)
+  - [Commands](https://github.com/prof-egg/Robotics-9204-2026/edit/main/.docs/agenda.md)
+  - [Command-Scheduler](https://docs.wpilib.org/en/stable/docs/software/commandbased/command-scheduler.html)
+  - [Triggers](https://docs.wpilib.org/en/stable/docs/software/commandbased/binding-commands-to-triggers.html)
+  - [Robot Container](https://docs.wpilib.org/en/stable/docs/software/commandbased/structuring-command-based-project.html#robotcontainer)
+
+Soon enough I plan to not show up as much so I can focus on other things before I go back to school. I want to make
+sure you guys can handle yourselves when I start to not appear as much (though I will still be maintaining this repo).
+
+---
+
+## Week 3 - 2026-01-26
 Last week we went over basic git and github practices (or at least half of us did), this week we are getting into programming fr fr.
 ### General
 - Research basic tank drive
 - Program basic tank drive
   - We are each going to each make our own branch and title it according to [naming convetions]. For example: `feature/mik-tank-drive`.
   - In our own branches, we will get comfortable with using the [command-based] framework by programming our own [tank drive] software.
-  - This will include things like making a tank drive [subsystem] (name the file something like `TankDrivetrainSybsystem.java`), making a drive [command], adding any necessary [constants] to the [`Constants.java`] file to keep your code clean, and making sure everything gets hooked up properly in the [robot container] ([`RobotContainer.java`]).
+  - This will include things like making a tank drive [subsystem] (name the file something like `TankDrivetrainSybsystem.java`),
+    making a drive [command], adding any necessary [constants] to the [`Constants.java`] file to keep your code clean,
+    and making sure everything gets hooked up properly in the [robot container] ([`RobotContainer.java`]).
   - Hopefully we will have time to [deploy] our code to the roboRIO and debug if we need to (we are probably going to have to enlist Tom to help us).
 - Our focus this year is swerve drive, but programming tank drive first will be good practice and gives us an easy drivetrain to test other robot modules on.
 > The name of the drivetrain subsystem file would usually just be named `DrivetrainSubsystem.java`. But, we are going to try and make a swerve-drive subsystem as well, so we should make the name of the tank drive file distinct. Hence: `TankDrivetrainSybsystem.java`.
----
+
 
 
 ## Week 2 - 2026-01-19
