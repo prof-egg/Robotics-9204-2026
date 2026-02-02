@@ -37,6 +37,9 @@ We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Mo
 > For some reason the offsets are using modified cartesian coordinates where positive X points towards the front of the robot and positive Y point towards the left.
 > You can see [this page](https://docs.yagsl.com/bringing-up-swerve/check-your-motors) on the YAGSL docs for a chart.
 
+> [!WARNING]
+> The absolute encoders might have been zeroed out in the wrong direction, the actual offsets may be `180`.
+
 ### PIDF Values
 | Set | P | I | D | F | iz |
 | - | :-: | :-: | :-: | :-: | :-: |
