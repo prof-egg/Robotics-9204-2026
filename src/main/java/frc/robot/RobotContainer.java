@@ -41,8 +41,9 @@ public class RobotContainer {
 		boolean isOpenField = false;
 		SwerveFieldCentricCommand fieldCentricDrive = new SwerveFieldCentricCommand(
 			this.swerveSubsystem,
-			() -> MathUtil.applyDeadband(controllerDriver.getLeftX(), ControllerConstants.CONTROLLER_DEADBAND),
+			// I think that forward being +X and left being +Y applies here too
 			() -> MathUtil.applyDeadband(controllerDriver.getLeftY(), ControllerConstants.CONTROLLER_DEADBAND),
+			() -> MathUtil.applyDeadband(-controllerDriver.getLeftX(), ControllerConstants.CONTROLLER_DEADBAND),
 			() -> controllerDriver.getRightX(), // this used to be controllerDriver.getRawAxis(2), leaving this note here in case of bugs
 			isOpenField
 		);
