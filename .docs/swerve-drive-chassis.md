@@ -29,10 +29,10 @@ This chart is based off of [this chart](https://docs.yagsl.com/configuring-yagsl
 We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Modules in this chassis.
 | Module | Motor Inverted | Absolute Encoder Inverted | Absolute Encoder Offsets <br> (degrees) | Offset +X (front) | Offset +Y (left) |
 | - | :-: | :-: | :-: | :-: | :-: |
-| Front Left | `false` | `false` | `0` | `11.75` | `11.75` |
-| Front Right | `false` | `false` | `0` | `11.75` | `-11.75` |
-| Back Left | `false` | `false` | `0` | `-11.75` | `11.75` |
-| Back Right | `false` | `false` | `0` | `-11.75` | `-11.75` |
+| Front Left | `false` | `false` | `359.3` | `11.75` | `11.75` |
+| Front Right | `false` | `false` | `359.3` | `11.75` | `-11.75` |
+| Back Left | `false` | `false` | `359.3` | `-11.75` | `11.75` |
+| Back Right | `false` | `false` | `359.3` | `-11.75` | `-11.75` |
 > [!NOTE]
 > For some reason the offsets are using modified cartesian coordinates where positive X points towards the front of the robot and positive Y point towards the left.
 > You can see [this page](https://docs.yagsl.com/bringing-up-swerve/check-your-motors) on the YAGSL docs for a chart.
