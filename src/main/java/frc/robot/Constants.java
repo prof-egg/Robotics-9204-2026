@@ -25,7 +25,7 @@ public final class Constants {
     public static final int CONTROLLER_OPERATOR_PORT = 0;
 
     // Deadband
-    public static final double CONTROLLER_DEADBAND=0.05;
+    public static final double CONTROLLER_DEADBAND=0.07;
   }
 
   public static class SwerveDriveConstants {
