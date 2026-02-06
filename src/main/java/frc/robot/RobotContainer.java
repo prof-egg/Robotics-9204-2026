@@ -33,9 +33,9 @@ public class RobotContainer {
   	// private final CommandXboxController controllerOperator = new CommandXboxController(ControllerConstants.CONTROLLER_OPERATOR_PORT);
 
 	public RobotContainer() {
-		this.configureBindings(); // May want to split this into two different methods - one controller + two controllers
+		// this.configureBindings(); // May want to split this into two different methods - one controller + two controllers
 
-		// this.configureDefaultDriveCommand();
+		this.configureDefaultDriveCommand();
 	}
 
 	private void configureDefaultDriveCommand() {
@@ -44,8 +44,8 @@ public class RobotContainer {
 			this.swerveSubsystem,
 			// I think that forward being +X and left being +Y applies here too
 			() -> MathUtil.applyDeadband(controllerDriver.getLeftY(), ControllerConstants.CONTROLLER_DEADBAND),
-			() -> MathUtil.applyDeadband(-controllerDriver.getLeftX(), ControllerConstants.CONTROLLER_DEADBAND),
-			() -> controllerDriver.getRightX(), // this used to be controllerDriver.getRawAxis(2), leaving this note here in case of bugs
+			() -> MathUtil.applyDeadband(controllerDriver.getLeftX(), ControllerConstants.CONTROLLER_DEADBAND),
+			() -> MathUtil.applyDeadband(controllerDriver.getRightX(), ControllerConstants.CONTROLLER_DEADBAND), // this used to be controllerDriver.getRawAxis(2), leaving this note here in case of bugs
 			isOpenField
 		);
 
