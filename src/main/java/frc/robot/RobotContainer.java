@@ -4,13 +4,17 @@
 
 package frc.robot;
 
-import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import java.io.File;
+
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.Constants.ControllerConstants;
+import frc.robot.commands.SwerveFieldCentricCommand;
+import frc.robot.subsystems.SwerveSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,45 +23,48 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  	// Initialize Subsystems
+  	private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve"));
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
-    // Configure the trigger bindings
-    configureBindings();
-  }
+  	// Get controllers
+  	private final CommandXboxController controllerDriver = new CommandXboxController(ControllerConstants.CONTROLLER_DRIVER_PORT);
+  	// private final CommandXboxController controllerOperator = new CommandXboxController(ControllerConstants.CONTROLLER_OPERATOR_PORT);
 
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
-  private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+	public RobotContainer() {
+		// this.configureBindings(); // May want to split this into two different methods - one controller + two controllers
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-  }
+		this.configureDefaultDriveCommand();
+	}
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
-  }
+	private void configureDefaultDriveCommand() {
+		boolean isOpenField = false;
+		SwerveFieldCentricCommand fieldCentricDrive = new SwerveFieldCentricCommand(
+			this.swerveSubsystem,
+			// I think that forward being +X and left being +Y applies here too
+			() -> MathUtil.applyDeadband(controllerDriver.getLeftY(), ControllerConstants.CONTROLLER_DEADBAND),
+			() -> MathUtil.applyDeadband(controllerDriver.getLeftX(), ControllerConstants.CONTROLLER_DEADBAND),
+			() -> MathUtil.applyDeadband(controllerDriver.getRightX(), ControllerConstants.CONTROLLER_DEADBAND), // this used to be controllerDriver.getRawAxis(2), leaving this note here in case of bugs
+			isOpenField
+		);
+
+		this.swerveSubsystem.setDefaultCommand(fieldCentricDrive);     
+	}
+
+	/**
+	 * Use this method to define your trigger->command mappings. Triggers can be created via the
+	 * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
+	 * predicate, or via the named factories in {@link
+	 * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
+	 * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
+	 * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
+	 * joysticks}.
+	 */
+	// private void configureBindings() {
+		
+	// }
+
+	public Command getAutonomousCommand() {
+		return Commands.print("No autonomous command configured");
+	}
 }
