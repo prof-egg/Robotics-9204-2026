@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.commands.SwerveFieldCentricCommand;
-import frc.robot.commands.SwerveTestCommand;
 import frc.robot.subsystems.SwerveSubsystem;
 
 /**
@@ -62,7 +61,7 @@ public class RobotContainer {
 	 * joysticks}.
 	 */
 	private void configureBindings() {
-		this.controllerDriver.a().whileTrue(new SwerveTestCommand(this.swerveSubsystem, true));
+		
 	}
 
 	public Command getAutonomousCommand() {
