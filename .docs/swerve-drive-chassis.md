@@ -32,7 +32,7 @@ We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Mo
 | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | Front Left | `true` | `false` | `true` | `1.39` | `attatched` | `11.75` | `11.75` |
 | Front Right | `true` | `false` | `true` | `359.6` | `attatched` | `11.75` | `-11.75` |
-| Back Left | `true` | `false` | `true` | `119.7` | `attatched` | `-11.75` | `11.75` |
+| Back Left | `true` | `false` | `true` | `359.9` | `attatched` | `-11.75` | `11.75` |
 | Back Right | `true` | `false` | `true` | `0.3` | `attatched` | `-11.75` | `-11.75` |
 > [!NOTE]
 > For some reason the offsets are using modified cartesian coordinates where positive X points towards the front of the robot and positive Y point towards the left.
