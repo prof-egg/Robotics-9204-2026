@@ -5,7 +5,22 @@ The agenda will hold general information about what we are maybe supposed to be 
 Test the robot?
 
 ---
-## [Week 4 - 2026-02-02](https://github.com/prof-egg/Robotics-9204-2026)
+## [Week 5 - 2026-02-09](https://github.com/prof-egg/Robotics-9204-2026)
+By now you should have a basic understanding of [command-based] programming and I am just about down with serve drive. 
+From now on I plan on showing up just Mondays and Thursdays and I leave the rest of the bot up to you guys.
+
+### General
+- Finish up tank drive code if you haven't.
+- Once I merge the `feature/swerve-drive` branch into the main branch, feel free to pull those changes to your local repo
+and create a new branch where you can mess around and run the code.
+  - You can try and do something like make the chassis move forward at a fix speed upon pressing the A button on the controller for a little exercise.
+
+Tom will be here most Tuesdays and he will try to make Wednesdays. When I'm not around feel free to ask him questions about programming. If we are
+both not around, then try to find the best answer you can by yourself. A lot of computer science is just research at the end of the day anyway.
+
+---
+
+## Week 4 - 2026-02-02
 I want us to be able to finish up the tank drive test program and do a test drive by the end of the week.
 I want to be able to finish up swerve drive for the actual robot, and then leave the rest of the robot to you guys.
 
@@ -22,8 +37,6 @@ I want to be able to finish up swerve drive for the actual robot, and then leave
 
 Soon enough I plan to not show up as much so I can focus on other things before I go back to school. I want to make
 sure you guys can handle yourselves when I start to not appear as much (though I will still be maintaining this repo).
-
----
 
 ## Week 3 - 2026-01-26
 Last week we went over basic git and github practices (or at least half of us did), this week we are getting into programming fr fr.
