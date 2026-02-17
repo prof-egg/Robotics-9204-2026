@@ -9,7 +9,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
+import frc.robot.Constants.DrivebaseConstants;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.util.List;
 import java.util.function.DoubleSupplier;
@@ -19,8 +19,7 @@ import swervelib.math.SwerveMath;
 /**
  * An example command that uses an example subsystem.
  */
-public class AbsoluteDrive extends Command
-{
+public class AbsoluteDrive extends Command {
 
   private final SwerveSubsystem swerve;
   private final DoubleSupplier  vX, vY;
@@ -48,8 +47,7 @@ public class AbsoluteDrive extends Command
    *                          with no deadband. Positive is away from the alliance wall.
    */
   public AbsoluteDrive(SwerveSubsystem swerve, DoubleSupplier vX, DoubleSupplier vY, DoubleSupplier headingHorizontal,
-                       DoubleSupplier headingVertical)
-  {
+                       DoubleSupplier headingVertical) {
     this.swerve = swerve;
     this.vX = vX;
     this.vY = vY;
@@ -71,9 +69,7 @@ public class AbsoluteDrive extends Command
   {
 
     // Get the desired chassis speeds based on a 2 joystick module.
-    ChassisSpeeds desiredSpeeds = swerve.getTargetSpeeds(vX.getAsDouble(), vY.getAsDouble(),
-                                                         headingHorizontal.getAsDouble(),
-                                                         headingVertical.getAsDouble());
+    ChassisSpeeds desiredSpeeds = swerve.getTargetSpeeds(vX.getAsDouble(), vY.getAsDouble(), headingHorizontal.getAsDouble(), headingVertical.getAsDouble());
 
     // Prevent Movement After Auto
     if (initRotation)
@@ -93,8 +89,8 @@ public class AbsoluteDrive extends Command
     // Limit velocity to prevent tippy
     Translation2d translation = SwerveController.getTranslation2d(desiredSpeeds);
     translation = SwerveMath.limitVelocity(translation, swerve.getFieldVelocity(), swerve.getPose(),
-                                           Constants.LOOP_TIME, Constants.ROBOT_MASS, List.of(Constants.CHASSIS),
-                                           swerve.getSwerveDriveConfiguration());
+      DrivebaseConstants.LOOP_TIME, DrivebaseConstants.ROBOT_MASS, List.of(DrivebaseConstants.CHASSIS), swerve.getSwerveDriveConfiguration()
+    );
     SmartDashboard.putNumber("LimitedTranslation", translation.getX());
     SmartDashboard.putString("Translation", translation.toString());
 
@@ -115,6 +111,4 @@ public class AbsoluteDrive extends Command
   {
     return false;
   }
-
-
 }
