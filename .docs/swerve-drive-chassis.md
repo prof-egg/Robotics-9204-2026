@@ -47,6 +47,9 @@ We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Mo
 | Drive | `0.0020645` | `0` | `0` | `0` | `0` |
 | Angle | `0.01` | `0` | `0` | `0` | `0` |
 
+### Miscellaneous
+- The password to our radio is `password`.
+
 [CANivore]: https://store.ctr-electronics.com/canivore/
 [Falcon500]: https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/
 [Kraken]: https://store.ctr-electronics.com/kraken-x60/
@@ -56,3 +59,5 @@ We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Mo
 [set this value to the name of your CANivore]: https://pro.docs.ctr-electronics.com/en/stable/docs/canivore/canivore-setup.html#renaming-canivores
 [Gear Ratio]: https://docs.yagsl.com/fundamentals/swerve-modules#conversion-factor
 [`SwerveDriveKinematics`]: https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/kinematics/SwerveDriveKinematics.html
+
+
