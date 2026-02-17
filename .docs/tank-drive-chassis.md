@@ -9,3 +9,6 @@ This doc will hold all the relevant information for the tank drive chassis.
 | Right (follower, coast) | 2 |
 | Left (brake mode) | 3 |
 | Left (follower, coast) | 4 |
+
+### Miscellaneous
+- The password to the radio is `92049204`.
