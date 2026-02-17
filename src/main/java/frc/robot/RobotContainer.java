@@ -4,67 +4,97 @@
 
 package frc.robot;
 
-import java.io.File;
-
-import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.Constants.ControllerConstants;
-import frc.robot.commands.SwerveFieldCentricCommand;
-import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.Constants.OperatorConstants;
+import frc.robot.subsystems.swervedrive.SwerveSubsystem;
+import java.io.File;
+import swervelib.SwerveInputStream;
 
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and trigger mappings) should be declared here.
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a "declarative" paradigm, very
+ * little robot logic should actually be handled in the {@link Robot} periodic
+ * methods (other than the scheduler calls).
+ * Instead, the structure of the robot (including subsystems, commands, and
+ * trigger mappings) should be declared here.
  */
 public class RobotContainer {
 
-  	// Initialize Subsystems
-  	private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve"));
+  // Replace with CommandPS4Controller or CommandJoystick if needed
+  private final CommandXboxController driverXbox = new CommandXboxController(0);
+  // The robot's subsystems and commands are defined here...
+  private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve"));
 
-  	// Get controllers
-  	private final CommandXboxController controllerDriver = new CommandXboxController(ControllerConstants.CONTROLLER_DRIVER_PORT);
-  	// private final CommandXboxController controllerOperator = new CommandXboxController(ControllerConstants.CONTROLLER_OPERATOR_PORT);
+  // Establish a Sendable Chooser that will be able to be sent to the
+  // SmartDashboard, allowing selection of desired auto
+  private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
-	public RobotContainer() {
-		// this.configureBindings(); // May want to split this into two different methods - one controller + two controllers
+  /**
+   * Converts driver input into a field-relative ChassisSpeeds that is controlled
+   * by angular velocity.
+   */
+  private SwerveInputStream driveAngularVelocity = SwerveInputStream
+      .of(drivebase.getSwerveDrive(), () -> driverXbox.getLeftY() * -1, () -> driverXbox.getLeftX() * -1)
+      .withControllerRotationAxis(driverXbox::getRightX).deadband(OperatorConstants.DEADBAND).scaleTranslation(0.8)
+      .allianceRelativeControl(true);
 
-		this.configureDefaultDriveCommand();
-	}
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
+  public RobotContainer() {
+    // Configure the trigger bindings
+    this.configureBindings();
+    DriverStation.silenceJoystickConnectionWarning(true);
 
-	private void configureDefaultDriveCommand() {
-		boolean isOpenField = false;
-		SwerveFieldCentricCommand fieldCentricDrive = new SwerveFieldCentricCommand(
-			this.swerveSubsystem,
-			// I think that forward being +X and left being +Y applies here too
-			() -> MathUtil.applyDeadband(controllerDriver.getLeftY(), ControllerConstants.CONTROLLER_DEADBAND),
-			() -> MathUtil.applyDeadband(controllerDriver.getLeftX(), ControllerConstants.CONTROLLER_DEADBAND),
-			() -> MathUtil.applyDeadband(controllerDriver.getRightX(), ControllerConstants.CONTROLLER_DEADBAND), // this used to be controllerDriver.getRawAxis(2), leaving this note here in case of bugs
-			isOpenField
-		);
+    // Set the default auto (do nothing)
+    this.autoChooser.setDefaultOption("Do Nothing", Commands.none());
 
-		this.swerveSubsystem.setDefaultCommand(fieldCentricDrive);     
-	}
+    // Add a simple auto option to have the robot drive forward for 1 second then
+    // stop
+    this.autoChooser.addOption("Drive Forward", this.drivebase.driveForward().withTimeout(1));
 
-	/**
-	 * Use this method to define your trigger->command mappings. Triggers can be created via the
-	 * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-	 * predicate, or via the named factories in {@link
-	 * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-	 * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-	 * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-	 * joysticks}.
-	 */
-	// private void configureBindings() {
-		
-	// }
+    // Put the autoChooser on the SmartDashboard
+    SmartDashboard.putData("Auto Chooser", this.autoChooser);
+  }
 
-	public Command getAutonomousCommand() {
-		return Commands.print("No autonomous command configured");
-	}
+  /**
+   * Use this method to define your trigger->command mappings. Triggers can be
+   * created via the
+   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with
+   * an arbitrary predicate, or via the
+   * named factories in
+   * {@link edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses
+   * for
+   * {@link CommandXboxController
+   * Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller PS4}
+   * controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick
+   * Flight joysticks}.
+   */
+  private void configureBindings() {
+    Command driveFieldOrientedAnglularVelocity = this.drivebase.driveFieldOriented(driveAngularVelocity);
+    this.drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
+
+  }
+
+  /**
+   * Use this to pass the autonomous command to the main {@link Robot} class.
+   *
+   * @return the command to run in autonomous
+   */
+  public Command getAutonomousCommand() {
+    // Pass in the selected auto from the SmartDashboard as our desired autnomous
+    // commmand
+    return this.autoChooser.getSelected();
+  }
+
+  public void setMotorBrake(boolean brake) {
+    this.drivebase.setMotorBrake(brake);
+  }
 }
