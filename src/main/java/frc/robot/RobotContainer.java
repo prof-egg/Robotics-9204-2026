@@ -8,7 +8,9 @@ import frc.robot.Constants.ConstantsGeneral.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeArm;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -60,6 +62,25 @@ public class RobotContainer {
     // An example command will be run in autonomous
     return Autos.exampleAuto(m_exampleSubsystem);
   }
-  
 
+  public class RobotContainer {
+    // 1. Instantiate your Subsystem
+    private final IntakeArm m_intakeArm = new IntakeArm();
+
+    // 2. Instantiate the Controller on port 0
+    private final CommandXboxController m_driverController = new CommandXboxController(0);
+
+    public RobotContainer() {
+        configureBindings();
+    }
+
+    private void configureBindings() {
+        // 3. Bind the button (e.g., the 'A' button)
+        m_driverController.a()
+            .whileTrue(new RunCommand(() -> m_intakeArm.setArmSpeed(0.5), m_intakeArm))
+            .onFalse(new RunCommand(() -> m_intakeArm.stop(), m_intakeArm));
+    }
+}
+  
+  
 }
