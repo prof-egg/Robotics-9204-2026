@@ -3,7 +3,15 @@ The agenda will hold general information about what we are maybe supposed to be 
 
 ---
 
-## [Week 6 - 2026-02-16](https://github.com/prof-egg/Robotics-9204-2026)
+## [Week 7 - 2026-02-23](https://github.com/prof-egg/Robotics-9204-2026)
+### General
+This might be the last agenda I make for the week. Now that you guys are self-sufficient, I trust in you to make your own informed decisions.
+By tomorrow I will make a [links](./links.md) doc that points in the direction of helpful resources including code references, documentation, etc.
+
+
+---
+
+## Week 6 - 2026-02-16
 Tom clutched up with swerve drive and we are on decent pace to have a robot for the first competition. Again, I will
 be here just about twice a week now, as I want you guys to be able to robotics on your own. You really just need experience
 figuring things out and making decisions.
@@ -17,7 +25,6 @@ figuring things out and making decisions.
 Once the competition starts in March, I (Michael) will be officially taking my leave from the club.
 I've mentioned it before but I've got other things going on which essentially boil down to preparing for university.
 
----
 
 ## Week 5 - 2026-02-09
 By now you should have a basic understanding of [command-based] programming and I am just about down with serve drive. 
