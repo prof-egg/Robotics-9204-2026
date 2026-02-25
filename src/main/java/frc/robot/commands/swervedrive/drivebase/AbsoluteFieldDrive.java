@@ -9,13 +9,12 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants.DrivebaseConstants;
+import frc.robot.Constants;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.util.List;
 import java.util.function.DoubleSupplier;
 import swervelib.SwerveController;
 import swervelib.math.SwerveMath;
-import swervelib.parser.SwerveDriveConfiguration;
 
 /**
  * An example command that uses an example subsystem.
@@ -40,7 +39,9 @@ public class AbsoluteFieldDrive extends Command
    *                station glass.
    * @param heading DoubleSupplier that supplies the robot's heading angle.
    */
-  public AbsoluteFieldDrive(SwerveSubsystem swerve, DoubleSupplier vX, DoubleSupplier vY, DoubleSupplier heading) {
+  public AbsoluteFieldDrive(SwerveSubsystem swerve, DoubleSupplier vX, DoubleSupplier vY,
+                            DoubleSupplier heading)
+  {
     this.swerve = swerve;
     this.vX = vX;
     this.vY = vY;
@@ -61,18 +62,20 @@ public class AbsoluteFieldDrive extends Command
 
     // Get the desired chassis speeds based on a 2 joystick module.
 
-    ChassisSpeeds desiredSpeeds = swerve.getTargetSpeeds(vX.getAsDouble(), vY.getAsDouble(), new Rotation2d(heading.getAsDouble() * Math.PI));
+    ChassisSpeeds desiredSpeeds = swerve.getTargetSpeeds(vX.getAsDouble(), vY.getAsDouble(),
+                                                         new Rotation2d(heading.getAsDouble() * Math.PI));
 
     // Limit velocity to prevent tippy
     Translation2d translation = SwerveController.getTranslation2d(desiredSpeeds);
-    SwerveDriveConfiguration config = swerve.getSwerveDriveConfiguration();
-
-    translation = SwerveMath.limitVelocity(translation, swerve.getFieldVelocity(), swerve.getPose(), DrivebaseConstants.LOOP_TIME, DrivebaseConstants.ROBOT_MASS, List.of(DrivebaseConstants.CHASSIS), config);
+    translation = SwerveMath.limitVelocity(translation, swerve.getFieldVelocity(), swerve.getPose(),
+                                           Constants.LOOP_TIME, Constants.ROBOT_MASS, List.of(Constants.CHASSIS),
+                                           swerve.getSwerveDriveConfiguration());
     SmartDashboard.putNumber("LimitedTranslation", translation.getX());
     SmartDashboard.putString("Translation", translation.toString());
 
     // Make the robot move
     swerve.drive(translation, desiredSpeeds.omegaRadiansPerSecond, true);
+
   }
 
   // Called once the command ends or is interrupted.
@@ -87,4 +90,6 @@ public class AbsoluteFieldDrive extends Command
   {
     return false;
   }
+
+
 }

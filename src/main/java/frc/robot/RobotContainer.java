@@ -4,82 +4,151 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeWrist;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.ShooterHood;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 import swervelib.SwerveInputStream;
 
 /**
- * This class is where the bulk of the robot should be declared. Since
- * Command-based is a "declarative" paradigm, very
- * little robot logic should actually be handled in the {@link Robot} periodic
- * methods (other than the scheduler calls).
- * Instead, the structure of the robot (including subsystems, commands, and
- * trigger mappings) should be declared here.
+ * This class is where the bulk of the robot should be declared. Since Command-based is a "declarative" paradigm, very
+ * little robot logic should actually be handled in the {@link Robot} periodic methods (other than the scheduler calls).
+ * Instead, the structure of the robot (including subsystems, commands, and trigger mappings) should be declared here.
  */
-public class RobotContainer {
+public class RobotContainer
+{
+
+  private Shooter shooter;
+  private Indexer indexer;
+  private Intake intake;
+  private ShooterHood hood;
+  private IntakeWrist wrist;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController driverXbox = new CommandXboxController(0);
+  final         CommandXboxController driverXbox = new CommandXboxController(0);
   // The robot's subsystems and commands are defined here...
-  private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve"));
+  private final SwerveSubsystem       drivebase  = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
+                                                                                "swerve"));
 
-  // Establish a Sendable Chooser that will be able to be sent to the
-  // SmartDashboard, allowing selection of desired auto
+  // Establish a Sendable Chooser that will be able to be sent to the SmartDashboard, allowing selection of desired auto
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   /**
-   * Converts driver input into a field-relative ChassisSpeeds that is controlled
-   * by angular velocity.
+   * Converts driver input into a field-relative ChassisSpeeds that is controlled by angular velocity.
    */
-  private SwerveInputStream driveAngularVelocity = SwerveInputStream
-      .of(drivebase.getSwerveDrive(), () -> driverXbox.getLeftY() * -1, () -> driverXbox.getLeftX() * -1)
-      .withControllerRotationAxis(driverXbox::getRightX).deadband(OperatorConstants.DEADBAND).scaleTranslation(0.8)
-      .allianceRelativeControl(true);
+  SwerveInputStream driveAngularVelocity = SwerveInputStream.of(drivebase.getSwerveDrive(),
+                                                                () -> driverXbox.getLeftY() * -1,
+                                                                () -> driverXbox.getLeftX() * -1)
+                                                            .withControllerRotationAxis(driverXbox::getRightX)
+                                                            .deadband(OperatorConstants.DEADBAND)
+                                                            .scaleTranslation(0.8)
+                                                            .allianceRelativeControl(true);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
-  public RobotContainer() {
+  public RobotContainer()
+  {
+    //Initialize subsystems
+    shooter=new Shooter();
+    indexer=new Indexer();
+    intake=new Intake();
+    hood=new ShooterHood();
+    wrist=new IntakeWrist();
+
     // Configure the trigger bindings
-    this.configureBindings();
+    configureBindings();
     DriverStation.silenceJoystickConnectionWarning(true);
 
-    // Set the default auto (do nothing)
-    this.autoChooser.setDefaultOption("Do Nothing", Commands.none());
+    //Set the default auto (do nothing) 
+    autoChooser.setDefaultOption("Do Nothing", Commands.none());
 
-    // Add a simple auto option to have the robot drive forward for 1 second then
-    // stop
-    this.autoChooser.addOption("Drive Forward", this.drivebase.driveForward().withTimeout(1));
-
-    // Put the autoChooser on the SmartDashboard
-    SmartDashboard.putData("Auto Chooser", this.autoChooser);
+    //Add a simple auto option to have the robot drive forward for 1 second then stop
+    autoChooser.addOption("Drive Forward", drivebase.driveForward().withTimeout(1));
+    
+    //Put the autoChooser on the SmartDashboard
+    SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 
   /**
-   * Use this method to define your trigger->command mappings. Triggers can be
-   * created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with
-   * an arbitrary predicate, or via the
-   * named factories in
-   * {@link edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses
-   * for
-   * {@link CommandXboxController
-   * Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller PS4}
-   * controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick
-   * Flight joysticks}.
+   * Use this method to define your trigger->command mappings. Triggers can be created via the
+   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary predicate, or via the
+   * named factories in {@link edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for
+   * {@link CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller PS4}
+   * controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight joysticks}.
    */
-  private void configureBindings() {
-    Command driveFieldOrientedAnglularVelocity = this.drivebase.driveFieldOriented(driveAngularVelocity);
-    this.drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
+  private void configureBindings()
+  {
+    Command driveFieldOrientedAnglularVelocity = drivebase.driveFieldOriented(driveAngularVelocity);
+    drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
+
+    /* Josh's triggers
+    driverXbox.leftTrigger()
+      .whileTrue(new RunCommand(() -> m_intakeArm.setArmSpeed(0.5), m_intakeArm))
+      .onFalse(new RunCommand(() -> m_intakeArm.stop(), m_intakeArm));
+     */
+
+    Trigger shooterButton=driverXbox.a();
+    Trigger indexerButton=driverXbox.b();
+    Trigger intakeButton=driverXbox.x();
+    Trigger hoodUpButton=driverXbox.rightBumper();
+    Trigger hoodDownButton=driverXbox.leftBumper();
+    Trigger wristUpButton=driverXbox.povRight();
+    Trigger wristDownButton=driverXbox.povLeft();
+    Trigger shooterUpButton=driverXbox.povUp();
+    Trigger shooterDownButton=driverXbox.povDown();
+
+    shooterButton
+      .whileTrue(new InstantCommand(shooter::runShooter,shooter))
+      .whileFalse(new InstantCommand(shooter::stopShooter,shooter));
+
+    indexerButton
+      .whileTrue(new InstantCommand(indexer::runIndexer,indexer))
+      .whileFalse(new InstantCommand(indexer::stopIndexer,indexer));
+
+    intakeButton
+      .whileTrue(new InstantCommand(intake::runIntake,intake))
+      .whileFalse(new InstantCommand(intake::stopIntake,intake));
+
+    hoodUpButton
+      .whileTrue(new InstantCommand(hood::increaseAngle,hood));
+
+    hoodDownButton
+      .whileTrue(new InstantCommand(hood::decreaseAngle,hood));
+
+    wristUpButton
+      .whileTrue(new InstantCommand(wrist::increaseAngle,wrist));
+
+    wristDownButton
+      .whileTrue(new InstantCommand(wrist::decreaseAngle,wrist));
+
+    shooterUpButton
+      .whileTrue(new InstantCommand(shooter::increaseSpeed,shooter));
+
+    shooterDownButton
+      .whileTrue(new InstantCommand(shooter::decreaseSpeed,shooter));
 
   }
 
@@ -88,13 +157,14 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    // Pass in the selected auto from the SmartDashboard as our desired autnomous
-    // commmand
-    return this.autoChooser.getSelected();
+  public Command getAutonomousCommand()
+  {
+    // Pass in the selected auto from the SmartDashboard as our desired autnomous commmand 
+    return autoChooser.getSelected();
   }
 
-  public void setMotorBrake(boolean brake) {
-    this.drivebase.setMotorBrake(brake);
+  public void setMotorBrake(boolean brake)
+  {
+    drivebase.setMotorBrake(brake);
   }
 }
