@@ -29,7 +29,7 @@ public class DefaultTankDriveCommand extends Command {
   public void execute() {
     double leftSpeed = this.leftSpeedSupplier.getAsDouble();
     double rightSpeed = this.rightSpeedSupplier.getAsDouble();
-    this.tankDriveSubsystem.tankDrive(leftSpeed, rightSpeed);
+    this.tankDriveSubsystem.tankDrive(leftSpeed / 2, rightSpeed / 2);
   }
 
   // Called once the command ends or is interrupted.
