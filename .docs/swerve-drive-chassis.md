@@ -18,7 +18,7 @@ This chart is based off of [this chart](https://docs.yagsl.com/configuring-yagsl
 | Wheel diameter **in inches** | `3` | No idea what the relevance is since I added this row but heres the link to the [modules we are using](https://www.revrobotics.com/rev-21-3005/). |
 
 
-### Motor Details
+### Swerve Motor Details
 | Module | Drive CAN ID | Angle CAN ID | Drive Motor Type | Angle Motor Type |
 | - | :-: | :-: | :-: | :-: |
 | Front Left | `2` | `1` | `sparkflex_vortex` | `sparkmax_neo550` |
@@ -26,20 +26,25 @@ This chart is based off of [this chart](https://docs.yagsl.com/configuring-yagsl
 | Back Left | `6` | `5` | `sparkflex_vortex` | `sparkmax_neo550` |
 | Back Right | `8` | `7` | `sparkflex_vortex` | `sparkmax_neo550` |
 
-### Module Details
+### Swerve Module Details
 We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Modules in this chassis.
 | Module | Drive Inverted | Angle Inverted | Encoder Inverted | Encoder Offsets <br> (degrees) | Encoder Type | Offset +X (front) | Offset +Y (left) |
 | - | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Front Left | `true` | `false` | `true` | `1.39` | `attatched` | `11.75` | `11.75` |
-| Front Right | `true` | `false` | `true` | `359.6` | `attatched` | `11.75` | `-11.75` |
-| Back Left | `true` | `false` | `true` | `359.9` | `attatched` | `-11.75` | `11.75` |
-| Back Right | `true` | `false` | `true` | `0.3` | `attatched` | `-11.75` | `-11.75` |
-> [!NOTE]
-> For some reason the offsets are using modified cartesian coordinates where positive X points towards the front of the robot and positive Y point towards the left.
-> You can see [this page](https://docs.yagsl.com/bringing-up-swerve/check-your-motors) on the YAGSL docs for a chart.
+| Front Left | `true` | `false` | `true` | `357.8` | `attatched` | `11.75` | `11.75` |
+| Front Right | `true` | `false` | `true` | `0.32` | `attatched` | `11.75` | `-11.75` |
+| Back Left | `true` | `false` | `true` | `359.6` | `attatched` | `-11.75` | `11.75` |
+| Back Right | `true` | `false` | `true` | `0.73` | `attatched` | `-11.75` | `-11.75` |
 
-> [!WARNING]
-> The absolute encoders might have been zeroed out in the wrong direction, the actual offsets may be `180`.
+### Other CAN IDs
+| Motor | CAN ID | 
+| - | :-: |
+| Intake Wheels | `10` |
+| Intake Wrist (left) | `11` |
+| Intake Wrist (right) | `12` |
+| Indexer/Kicker | `13` |
+| Shooter (left) | `15` |
+| Shooter (right) | `16` |
+| Hood | `14` |
 
 ### PIDF Values
 | Set | P | I | D | F | iz |
@@ -49,6 +54,10 @@ We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Mo
 
 ### Miscellaneous
 - The password to our radio is `password`.
+
+> [!NOTE]
+> For some reason the swerve module offsets are using modified cartesian coordinates where positive X points towards the front of the robot and positive Y point towards the left.
+> You can see [this page](https://docs.yagsl.com/bringing-up-swerve/check-your-motors) on the YAGSL docs for a chart.
 
 [CANivore]: https://store.ctr-electronics.com/canivore/
 [Falcon500]: https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/
