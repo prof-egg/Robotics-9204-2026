@@ -36,15 +36,15 @@ We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Mo
 | Back Right | `true` | `false` | `true` | `0.73` | `attatched` | `-11.75` | `-11.75` |
 
 ### Other CAN IDs
-| Motor | CAN ID | 
-| - | :-: |
-| Intake Wheels | `10` |
-| Intake Wrist (left) | `11` |
-| Intake Wrist (right) | `12` |
-| Indexer/Kicker | `13` |
-| Shooter (left) | `15` |
-| Shooter (right) | `16` |
-| Hood | `14` |
+| Motor | CAN ID | Mode |
+| - | :-: | :-: |
+| Intake Wheels | `10` | `coast` |
+| Intake Wrist (left) | `11` | `brake` |
+| Intake Wrist (right) | `12` | `brake` |
+| Indexer/Kicker | `13` | `coast` |
+| Shooter (left) | `15` | `coast` |
+| Shooter (right) | `16` | `coast` |
+| Hood | `14` | `brake` |
 
 ### PIDF Values
 | Set | P | I | D | F | iz |
