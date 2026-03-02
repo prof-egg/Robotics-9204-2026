@@ -52,6 +52,19 @@ We are using [NEO Vortex MAXSwerve](https://www.revrobotics.com/rev-21-3005/) Mo
 | Drive | `0.0020645` | `0` | `0` | `0` | `0` |
 | Angle | `0.01` | `0` | `0` | `0` | `0` |
 
+### Controls
+| System | Control |
+| - | :-: |
+| Swerve Drive | `L3 (Left Analog Stick)` |
+| Swerve Rotation | `R3 (Right Analog Stick)` |
+| Shooter | `A` |
+| Indexer/Kicker | `B` |
+| Intake | `X` |
+| Hood Up | `L1 (Left Bumper)` |
+| Hood Down | `R1 (Right Bumper)` |
+| Intake Wrist Extend | `D-Pad Left` |
+| Intake Wrist Contract | `D-Pad Right` |
+
 ### Miscellaneous
 - The password to our radio is `password`.
 
